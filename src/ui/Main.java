@@ -9,24 +9,26 @@ import model.Location;
 import model.Material;
 import model.Orientation;
 
+/*
 import model.Wind;
 import model.PercussionShaken;
 import model.PercussionRubbed;
 import model.StringedPlucked;
 import model.StringedRubbed;
 import model.StringedStruck;
+*/
 
 public class Main{
 
 	//relations
-	private MusicShop aShop;
+	private MusicShop shop;
 	private Scanner sc;
 
 	//constructor
 	public Main(){
 
 		sc = new Scanner(System.in);
-		aShop = new MusicShop();
+		shop = new MusicShop();
 	}
 
 	//main
@@ -53,7 +55,6 @@ public class Main{
 		System.out.println("\n\n-----MAIN MENU-----\n" + 
 			"\n(1) to add a new instrument\n" + 
 			"(2) to print all instruments\n" + 
-			"(3) ---TEST---\n" + 
 			"(0) to exit");
 
 		option = sc.nextInt();
@@ -76,7 +77,7 @@ public class Main{
 
 			case 2:
 				System.out.println("\n---ALL INSTRUMENTS---");
-				aShop.printAllInstruments();
+				shop.printAllInstruments();
 				break;
 		}
 	}
@@ -110,7 +111,7 @@ public void createInstrument(){
 		System.out.print("Input reference number: ");
 		reference = sc.nextLine();
 
-		System.out.println("Input dimensions");
+		System.out.println("\nInput dimensions");
 		System.out.print("Height: ");
 		height = sc.nextDouble();
 		System.out.print("Length: ");
@@ -118,7 +119,7 @@ public void createInstrument(){
 		System.out.print("Width: ");
 		width = sc.nextDouble();
 
-		System.out.println("Input location: ");
+		System.out.print("\nInput location: ");
 		sc.nextLine();
 		temp = sc.nextLine();
 
@@ -163,7 +164,7 @@ public void createInstrument(){
 
 		Material madeOf = null;
 
-		System.out.print("Input material: ");
+		System.out.print("\nInput material: ");
 		temp = sc.nextLine();
 
 		if(temp.equalsIgnoreCase("Wood")){
@@ -176,109 +177,112 @@ public void createInstrument(){
 			madeOf = Material.METAL;
 		}
 		
-		Wind wind = new Wind(reference, height, length, width, located, distributedBy, madeOf);
+		shop.addWind(reference, height, length, width, located, distributedBy, madeOf);
 	}
 
-	public void newPercussionInstrument(String subType, String reference, double height, double length, double width, Location located, Distributor distributedBy){
+	public void newPercussionInstrument(String subType, String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy){
 
 		if(subType.equalsIgnoreCase("Shaken")){
 
-				String material;
+			String material;
 
-				System.out.print("Input material: ");
-				material = sc.nextLine();
+			System.out.print("Input material: ");
+			material = sc.nextLine();
 
-				PercussionShaken percussionShaken = new PercussionShaken(reference, height, length, width, located, distributedBy, material);
-			}
+			shop.addPercussionShaken(reference, height, length, width, located, distributedBy, material);
+		}
 
 		if(subType.equalsIgnoreCase("Rubbed")){
 
 			ExternalObject playedWith = createExternalObject();
 
-			PercussionRubbed percussionRubbed = new PercussionRubbed(reference, height, length, width, located, distributedBy, playedWith);
+			shop.addPercussionRubbed(reference, height, length, width, located, distributedBy, playedWith);
 		}
 	}
 
-	public void newStringedInstrument(String subType, String reference, double height, double length, double width, Location located, Distributor distributedBy){
+	public void newStringedInstrument(String subType, String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy){
 
 		String temp;
 
 		if(subType.equalsIgnoreCase("Plucked")){
 
-				int frets, stringQuantity;
-				boolean hasCase = false;
+			int frets, stringQuantity;
+			boolean hasCase = false;
 
-				System.out.print("Input frets: ");
-				frets = sc.nextInt();
+			System.out.print("Input frets: ");
+			frets = sc.nextInt();
 
-				System.out.print("Input string quantity: ");
-				stringQuantity = sc.nextInt();
+			System.out.print("Input string quantity: ");
+			stringQuantity = sc.nextInt();
 
-				System.out.print("Input if instrument has case: ");
-				sc.nextLine();
-				temp = sc.nextLine();
+			System.out.print("Input if instrument has case: ");
+			sc.nextLine();
+			temp = sc.nextLine();
 
-				if(temp.equalsIgnoreCase("Yes")){
+			if(temp.equalsIgnoreCase("Yes")){
 
-					hasCase = true;
-				}
-
-				StringedPlucked stringedPlucked = new StringedPlucked(reference, height, length, width, located, distributedBy, 
-					frets, stringQuantity, hasCase);
+				hasCase = true;
 			}
 
-			if(subType.equalsIgnoreCase("Rubbed")){
+			shop.addStringedPlucked(reference, height, length, width, located, distributedBy, 
+				frets, stringQuantity, hasCase);
+		}
 
-				int bowLength, stringQuantity;
+		if(subType.equalsIgnoreCase("Rubbed")){
 
-				System.out.print("Input bow length: ");
-				bowLength = sc.nextInt();
+			int bowLength, stringQuantity;
 
-				System.out.print("Input string quantity: ");
-				stringQuantity = sc.nextInt();
+			System.out.print("Input bow length: ");
+			bowLength = sc.nextInt();
 
-				StringedRubbed stringedRubbed = new StringedRubbed(reference, height, length, width, located, distributedBy, bowLength, stringQuantity);
+			System.out.print("Input string quantity: ");
+			stringQuantity = sc.nextInt();
+
+			shop.addStringedRubbed(reference, height, length, width, located, distributedBy, 
+				bowLength, stringQuantity);
+		}
+
+		if(subType.equalsIgnoreCase("Struck")){
+
+			double boxHeight, boxLength, boxWidth;
+			String material;
+			double octaves;
+			Orientation oriented = null;
+
+			System.out.println("\nInput box dimensions");
+			System.out.print("Height: ");
+			boxHeight = sc.nextDouble();
+			System.out.print("Lenght: ");
+			boxLength = sc.nextDouble();
+			System.out.print("Width:");
+			boxWidth = sc.nextDouble();
+
+			System.out.print("\nInput material: ");
+			sc.nextLine();
+			material = sc.nextLine();
+
+			System.out.print("Input octaves quantity: ");
+			octaves = sc.nextDouble();
+
+			System.out.print("Input orientation: ");
+			temp = sc.nextLine();
+			sc.nextLine();
+
+			if(temp.equalsIgnoreCase("Horizontal")){
+
+				oriented = Orientation.HORIZONTAL;
 			}
 
-			if(subType.equalsIgnoreCase("Struck")){
+			if(temp.equalsIgnoreCase("Vertical")){
 
-				double boxHeight, boxLength, boxWidth;
-				String material;
-				double octaves;
-				Orientation oriented = null;
-
-				System.out.println("Input box dimensions");
-				System.out.print("Height: ");
-				boxHeight = sc.nextDouble();
-				System.out.print("Lenght: ");
-				boxLength = sc.nextDouble();
-				System.out.print("Width:");
-				boxWidth = sc.nextDouble();
-
-				System.out.print("Input material: ");
-				sc.nextLine();
-				material = sc.nextLine();
-
-				System.out.print("Input octaves quantity: ");
-				octaves = sc.nextDouble();
-
-				System.out.print("Input orientation: ");
-				temp = sc.nextLine();
-				sc.nextLine();
-
-				if(temp.equalsIgnoreCase("Horizontal")){
-
-					oriented = Orientation.HORIZONTAL;
-				}
-
-				if(temp.equalsIgnoreCase("Vertical")){
-
-					oriented = Orientation.VERTICAL;
-				}
-
-				StringedStruck stringedStruck = new StringedStruck(reference, height, length, width, located, distributedBy, 
-					boxHeight, boxLength, boxWidth, material, octaves, oriented);
+				oriented = Orientation.VERTICAL;
 			}
+
+			shop.addStringedStruck(reference, height, length, width, located, distributedBy, 
+				boxHeight, boxLength, boxWidth, material, octaves, oriented);
+		}
 	}
 
 	//
@@ -295,7 +299,7 @@ public void createInstrument(){
 		System.out.print("Phone: ");
 		phone = sc.nextLine();
 
-		Distributor distributedBy = aShop.addDistributor(name, address, phone);
+		Distributor distributedBy = shop.addDistributor(name, address, phone);
 
 		return distributedBy;
 	}
@@ -312,6 +316,7 @@ public void createInstrument(){
 		objectLength = sc.nextDouble();
 		System.out.print("Input width: ");
 		objectWidth = sc.nextDouble();
+		sc.nextLine();
 		System.out.print("Input material: ");
 		objectMaterial = sc.nextLine();
 

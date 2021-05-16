@@ -31,4 +31,17 @@ public class StringedRubbed extends Stringed{
 	public void setStringQuantity(int stringQuantity){
 		this.stringQuantity = stringQuantity;
 	}
+
+	//to String
+	public String toString(){
+
+		String out = "Reference: " + getReference() + 
+		"\nDimensions (height, length, width): " + getHeight() + ", " + getLength() + ", " + getWidth() +
+		"\nLocation: " + getLocated() + 
+		"\n---DISTRIBUTOR: " + getDistributedby() + 
+		"\nBow length: "+ getBowLenght() + 
+		"\nString quantity: " + getStringQuantity();
+
+		return out;
+	}
 }

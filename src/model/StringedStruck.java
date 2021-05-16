@@ -61,4 +61,18 @@ public class StringedStruck extends Stringed{
 	public void setOctaves(double octaves){
 		this.octaves = octaves;
 	}
+
+	//to String
+	public String toString(){
+
+		String out = "Reference: " + getReference() + 
+		"\nDimensions (height, length, width): " + getHeight() + ", " + getLength() + ", " + getWidth() +
+		"\nLocation: " + getLocated() + 
+		"\n---DISTRIBUTOR: " + getDistributedby() + 
+		"\nBox dimensions (height, length, width); " + getBoxLength() + ", " + getBoxLength() + ", " + getBoxWidth() + 
+		"\nMaterial: " + getMaterial() + 
+		"\nOctaves: " + getOctaves();
+
+		return out;
+	}
 }

@@ -24,29 +24,135 @@ public class MusicShop{
 	}
 
 	//methods
-	public void addInstrument(String reference, double height, double length, double width, Location located, Distributor distributedBy){
 
-		/*
+	public void addWind(String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy, Material madeOf){
+		
 		if(totalInstruments < MAX_INSTRUMENTS){
 
 			boolean empty = false;
-			int pos;
+			int i;
 
-			for(pos = 0; pos < MAX_INSTRUMENTS && !empty; pos++){
+			for(i = 0; i < instruments.length && !empty; i++){
 
-				if(instruments[pos] == null){
+				if(instruments[i] == null){
 
-					instruments[pos] = new Instrument(reference, height, length, width, located, distributedBy);
+					instruments[i] = new Wind(reference, height, length, width, located, distributedBy, madeOf);
 					totalInstruments++;
 					empty = true;
 				}
 			}
 		}
-		*/
 	}
 
-	public Distributor addDistributor(String name, String address, String phone){
+	public void addPercussionShaken(String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy, String material){
 
+		if(totalInstruments < MAX_INSTRUMENTS){
+
+			boolean empty = false;
+			int i;
+
+			for(i = 0; i < instruments.length && !empty; i++){
+
+				if(instruments[i] == null){
+
+					instruments[i] = new PercussionShaken(reference, height, length, width, located, distributedBy, material);
+					totalInstruments++;
+					empty = true;
+				}
+			}
+		}
+	}
+
+	public void addPercussionRubbed(String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy, ExternalObject playedWith){
+
+		if(totalInstruments < MAX_INSTRUMENTS){
+
+			boolean empty = false;
+			int i;
+
+			for(i = 0; i < instruments.length && !empty; i++){
+
+				if(instruments[i] == null){
+
+					instruments[i] = new PercussionRubbed(reference, height, length, width, located, distributedBy, playedWith);
+					totalInstruments++;
+					empty = true;
+				}
+			}
+		}
+	}
+
+	public void addStringedPlucked(String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy, int frets, int stringQuantity, boolean hasCase){
+
+		if(totalInstruments < MAX_INSTRUMENTS){
+
+			boolean empty = false;
+			int i;
+
+			for(i = 0; i < instruments.length && !empty; i++){
+
+				if(instruments[i] == null){
+
+					instruments[i] = new StringedPlucked(reference, height, length, width, located, distributedBy, 
+						frets, stringQuantity, hasCase);
+					totalInstruments++;
+					empty = true;
+				}
+			}
+		}
+	}
+
+	public void addStringedRubbed(String reference, double height, double length, double width, 
+		Location located, Distributor distributedBy, double bowLength, int stringQuantity){
+
+		if(totalInstruments < MAX_INSTRUMENTS){
+
+			boolean empty = false;
+			int i;
+
+			for(i = 0; i < instruments.length && !empty; i++){
+
+				if(instruments[i] == null){
+
+					instruments[i] = new StringedRubbed(reference, height, length, width, located, distributedBy, 
+					bowLength, stringQuantity);
+					totalInstruments++;
+					empty = true;
+				}
+			}
+		}
+	}
+
+	public void addStringedStruck(String reference, double height, double length, double width, Location 
+		located, Distributor distributedBy, double boxHeight, double boxLength, double boxWidth, 
+		String material, double octaves, Orientation oriented){
+
+		if(totalInstruments < MAX_INSTRUMENTS){
+
+			boolean empty = false;
+			int i;
+
+			for(i = 0; i < instruments.length && !empty; i++){
+
+				if(instruments[i] == null){
+
+					instruments[i] = new StringedStruck(reference, height, length, width, located, distributedBy, 
+						boxHeight, boxLength, boxWidth, material, octaves, oriented);
+					totalInstruments++;
+					empty = true;
+				}
+			}
+		}
+	}
+
+
+
+	public Distributor addDistributor(String name, String address, String phone){
+ 
 		Distributor	distributedBy = new Distributor(name, address, phone);
 
 		return distributedBy;
@@ -63,7 +169,7 @@ public class MusicShop{
 
 		if(totalInstruments != 0){
 
-			for(int i = 0; i < MAX_INSTRUMENTS; i++){
+			for(int i = 0; i < instruments.length; i++){
 
 				if(instruments[i] != null){
 

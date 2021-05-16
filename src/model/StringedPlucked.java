@@ -40,4 +40,18 @@ public class StringedPlucked extends Stringed{
 	public void setHasCase(boolean hasCase){
 		this.hasCase = hasCase;
 	}
+
+	//to String
+	public String toString(){
+
+		String out = "Reference: " + getReference() + 
+		"\nDimensions (height, length, width): " + getHeight() + ", " + getLength() + ", " + getWidth() +
+		"\nLocation: " + getLocated() + 
+		"\n---DISTRIBUTOR: " + getDistributedby() + 
+		"\nFrets: " + getFrets() + 
+		"\nString quantity: " + getStringQuantity() + 
+		"\nHas case: " + getHasCase();
+
+		return out;
+	}
 }

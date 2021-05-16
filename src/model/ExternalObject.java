@@ -34,10 +34,10 @@ public class ExternalObject{
 		this.objectLength = objectLength;
 	}
 
-	public double setObjectWidth(){
+	public double getObjectWidth(){
 		return objectWidth;
 	}
-	public void getObjectWidth(double objectWidth){
+	public void setObjectWidth(double objectWidth){
 		this.objectWidth = objectWidth;
 	}
 
@@ -46,5 +46,14 @@ public class ExternalObject{
 	}
 	public void setObjectMaterial(String objectMaterial){
 		this.objectMaterial = objectMaterial;
+	}
+
+	//to String
+	public String toString(){
+
+		String out = "\nDimensions (height, length, width): " + getObjectHeight() + ", " + getObjectLength() + ", " + getObjectWidth() +
+		"\nMaterial: " + getObjectMaterial();
+
+		return out;
 	}
 }

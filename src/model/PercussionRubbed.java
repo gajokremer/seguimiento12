@@ -23,4 +23,16 @@ public class PercussionRubbed extends Percussion{
 
 		this.playedWith = playedWith;
 	}
+
+	//to String
+	public String toString(){
+
+		String out = "Reference: " + getReference() + 
+		"\nDimensions (height, length, width): " + getHeight() + ", " + getLength() + ", " + getWidth() +
+		"\nLocation: " + getLocated() + 
+		"\n---DISTRIBUTOR: " + getDistributedby() + 
+		"\n---EXTERNAL OBJECT: " + getPlayedWith();
+
+		return out;
+	}
 }

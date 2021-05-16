@@ -42,8 +42,10 @@ public class Distributor{
 	//to String
 	public String toString(){
 
-		return "\nName: " + getName() + 
+		String out = "\nName: " + getName() + 
 		"\nAddress: " + getAddress() + 
 		"\nPhone: " + getPhone();
+
+		return out;
 	}
 }

@@ -22,4 +22,16 @@ public class PercussionShaken extends Percussion{
 	public void setMaterial(String material){
 		this.material = material;
 	}
+
+	//to String
+	public String toString(){
+
+		String out = "Reference: " + getReference() + 
+		"\nDimensions (height, length, width): " + getHeight() + ", " + getLength() + ", " + getWidth() +
+		"\nLocation: " + getLocated() + 
+		"\n---DISTRIBUTOR: " + getDistributedby() + 
+		"\nMaterial: " + getMaterial();
+
+		return out;
+	}
 }

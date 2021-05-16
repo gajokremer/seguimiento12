@@ -26,9 +26,9 @@ public class Wind extends Instrument{
 	public String toString(){
 
 		String out = "Reference: " + getReference() + 
-		"\nDimensions (height, length, width: " + getHeight() + ", " + getLength() + ", " + getWidth() +
+		"\nDimensions (height, length, width): " + getHeight() + ", " + getLength() + ", " + getWidth() +
 		"\nLocation: " + getLocated() + 
-		"\nDistributor: " + getDistributedby() + 
+		"\n---DISTRIBUTOR: " + getDistributedby() + 
 		"\nMaterial: " + madeOf;
 
 		return out;
